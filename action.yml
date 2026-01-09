@@ -1,0 +1,69 @@
+name: 'Release Note Agent'
+description: 'AI Agent to communicate release notes and and project updates to stakeholders.'
+inputs:
+  github_token:
+    description: 'GitHub PAT token / GitHub Action token'
+    required: true
+    default: ''
+  owner:
+    description: 'Repository owner'
+    required: true
+    default: ''
+  owner_type:
+    description: 'Owner type: user or org'
+    required: false
+    default: 'org'
+  repo:
+    description: 'Repository name'
+    required: true
+    default: '${{ github.event.repository.name }}'
+  project_id:
+    description: 'Project ID to fetch updates from'
+    required: false
+    default: ''
+  release_tag:
+    description: 'Release tag to generate notes for'
+    required: false
+    default: 'latest'
+  discord_webhook_url:
+    description: 'Discord Webhook URL to send release notes'
+    required: false
+    default: ''
+  slack_webhook_url:
+    description: 'Slack Webhook URL to send release notes'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.11'  
+    - name: Install Dependencies
+      run: uv sync
+      shell: bash
+    - name: Install Dapr CLI
+      run: |
+        wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
+        export PATH="$PATH:$HOME/.dapr/bin"
+      shell: bash
+    - name: Install Ollama Action & Fetch model
+      uses: ai-action/ollama-action@v2
+      with:
+        model: nemotron-3-nano:latest
+    - name: Handle environment variables
+      run: |
+        echo "GITHUB_PAT=${{ inputs.github_token }}" >> $GITHUB_ENV
+        echo "GITHUB_REPOSITORY=${{ inputs.owner }}/${{ inputs.repo }}" >> $GITHUB_ENV
+        echo "GITHUB_TAG=${{ inputs.project_id }}" >> $GITHUB_ENV
+        echo "GITHUB_PROJECT_NUMBER=${{ inputs.project_id }}" >> $GITHUB_ENV
+        echo "GITHUB_OWNER_TYPE=${{ inputs.owner_type }}" >> $GITHUB_ENV
+        echo "RELEASE_TAG=${{ inputs.release_tag }}" >> $GITHUB_ENV
+        echo "DISCORD_WEBHOOK_URL=${{ inputs.discord_webhook_url }}" >> $GITHUB_ENV
+        echo "SLACK_WEBHOOK_URL=${{ inputs.slack_webhook_url }}" >> $GITHUB_ENV
+      shell: bash
+    - name: Run Release Note Agent
+      id: run-release-note-agent
+      run: dapr run --app-id release-note-agent --resources-path release_note_agent/components/ -- python release_note_agent/release_note_agent.py
+      shell: bash
