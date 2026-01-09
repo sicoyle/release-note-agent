@@ -73,5 +73,5 @@ runs:
       shell: bash
     - name: Run Release Note Agent
       id: run-release-note-agent
-      run: dapr run --app-id release-note-agent --resources-path release_note_agent/components/ -- python release_note_agent/release_note_agent.py
+      run: dapr run --app-id release-note-agent --resources-path release_note_agent/components/ -- ./venv/bin/python release_note_agent/release_note_agent.py
       shell: bash
