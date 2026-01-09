@@ -1,0 +1,19 @@
+name: Test Action
+on: [push]
+
+jobs:
+  get-num-square:
+    runs-on: ubuntu-latest
+    name: Test running the Release Note Agent Action
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+    - name: Run Release Note Agent Action
+      id: run-release-note-agent
+      uses: ./
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        owner: "dapr"
+        owner_type: "org"
+        repo: "dapr"
+        project_id: "92"
