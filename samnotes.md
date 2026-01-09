@@ -4,7 +4,7 @@
 - owner & repo through env vars
 - release tracking github project ID
 - TODO NEXT: which social media platform
-
+- release tag, default 'latest'
 
 Added as a part of the release git workflow.
 
@@ -13,4 +13,4 @@ Added as a part of the release git workflow.
 
 Future TODO:
 - read github project board and summarize top 2-3 items for upcoming work at the end of the summarization
-- model customizatio
+- model customizations (to enable we need the env var applier tool from dapr-agents to fill in and add an env var for this)
