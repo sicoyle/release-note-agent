@@ -7,6 +7,6 @@ spec:
   version: v1
   metadata:
   - name: model
-    value: nemotron-3-nano:latest
+    value: devstral-small-2
   - name: cacheTTL
     value: 10m

@@ -55,7 +55,7 @@ runs:
     - name: Install Ollama Action & Fetch model
       uses: ai-action/ollama-action@v2
       with:
-        model: nemotron-3-nano:latest
+        model: devstral-small-2
     - name: Handle environment variables
       run: |
         echo "GITHUB_PAT=${{ inputs.github_token }}" >> $GITHUB_ENV
