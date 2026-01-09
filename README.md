@@ -57,7 +57,6 @@ Note: Many LLM providers are compatible with OpenAI's API (DeepSeek, Google AI, 
 dapr run --app-id summarization_agent --resources-path ./components -- python release_note_agent.py
 ```
 
-
 ### Additional Components
 
 The quickstart includes other necessary Dapr components in the `components` directory:
@@ -69,4 +68,18 @@ Make sure Dapr is initialized on your system:
 
 ```bash
 dapr init
+```
+
+
+## To run locally
+You need to set the following env vars (modified appropriately):
+- GITHUB_PAT='blah'
+- GITHUB_REPOSITORY='dapr/dapr-agents'
+- GITHUB_OWNER_TYPE='org'
+- GITHUB_PROJECT_NUMBER='92'
+
+Then,
+```
+cd release_note_agent
+dapr run --app-id summarization_agent --resources-path ./components -- python release_note_agent.py
 ```
