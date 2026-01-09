@@ -7,6 +7,6 @@ spec:
   version: v1
   metadata:
   - name: model
-    value: deepseek-r1:14b
+    value: deepseek-r1:latest
   - name: cacheTTL
     value: 10m
