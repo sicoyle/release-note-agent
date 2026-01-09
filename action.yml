@@ -64,7 +64,7 @@ runs:
       run: |
         echo "GITHUB_PAT=${{ inputs.github_token }}" >> $GITHUB_ENV
         echo "GITHUB_REPOSITORY=${{ inputs.owner }}/${{ inputs.repo }}" >> $GITHUB_ENV
-        echo "GITHUB_TAG=${{ inputs.project_id }}" >> $GITHUB_ENV
+        echo "GITHUB_TAG=${{ inputs.release_tag }}" >> $GITHUB_ENV
         echo "GITHUB_PROJECT_NUMBER=${{ inputs.project_id }}" >> $GITHUB_ENV
         echo "GITHUB_OWNER_TYPE=${{ inputs.owner_type }}" >> $GITHUB_ENV
         echo "RELEASE_TAG=${{ inputs.release_tag }}" >> $GITHUB_ENV
