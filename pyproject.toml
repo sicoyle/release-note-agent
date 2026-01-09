@@ -1,0 +1,9 @@
+[project]
+name = "release-note-agent"
+version = "0.1.0"
+description = "Release note summarization agent to be used in CI for any repository"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dapr-agents"
+]
