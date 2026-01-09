@@ -60,7 +60,7 @@ async def main():
             payload={"task": prompt},
         )
 
-        print(f"\nFinal Result:\n{result}\n", flush=True)
+        print(f"::set-output name=release_notes::{result}")
 
     except Exception as e:
         logger.error(f"Error running workflow: {e}", exc_info=True)

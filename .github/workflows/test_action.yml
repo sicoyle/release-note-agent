@@ -17,3 +17,5 @@ jobs:
         owner_type: "org"
         repo: "dapr"
         project_id: "92"
+    - name: Print the release notes
+      run: echo "${{ steps.run-release-note-agent.outputs.release_notes }}"
