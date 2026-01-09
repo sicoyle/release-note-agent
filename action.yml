@@ -59,7 +59,7 @@ runs:
     - name: Install Ollama Action & Fetch model
       uses: ai-action/ollama-action@v2
       with:
-        model: devstral-small-2
+        model: deepseek-r1:14b
     - name: Handle environment variables
       run: |
         echo "GITHUB_PAT=${{ inputs.github_token }}" >> $GITHUB_ENV
