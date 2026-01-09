@@ -54,7 +54,6 @@ runs:
     - name: Install Dapr CLI
       run: |
         wget -q https://raw.githubusercontent.com/dapr/cli/master/install/install.sh -O - | /bin/bash
-        export PATH="$PATH:$HOME/.dapr/bin"
       shell: bash
     - name: Install Ollama Action & Fetch model
       uses: ai-action/ollama-action@v2
